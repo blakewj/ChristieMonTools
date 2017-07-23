@@ -9,7 +9,9 @@ from PyQt5 import QtGui
 from PyQt5.QtCore import QThread, pyqtSignal,pyqtSlot
 from PyQt5.QtCore  import QObject
 from PyQt5.Qt import QSize
-'''           
+'''
+#newcommit
+
 
 class UserInterface(QMainWindow):
     
@@ -19,50 +21,8 @@ class UserInterface(QMainWindow):
         self.initUI()
         app.setStyleSheet('QMainWindow{background-color: black;border: 1px solid black;}')
 
-    
-    
-    def handleNewWindow(self):
-        window = QMainWindow(self)       
-        # window.setAttribute(Qt.WA_DeleteOnClose)
-        window.setWindowTitle(self.tr('Add Projector'))
-        #window.setGeometry(250,250,500,500)
-        # Create textbox
-        self.ipBox = QLineEdit()
-        self.nameBox = QLineEdit()
-        
-        self.ipBox.resize(400,40)
-        self.nameBox.resize(400,40)
-        window.setStyleSheet('QMainWindow{background-color: lack;black: 1px solid black;}')
-        button = QPushButton("Add Projector") #create button
-        
-        CentralWidget = QWidget() # create an empty widget
-        CentralWidgetLayout = QHBoxLayout() # create a layout
-        CentralWidgetLayout.addWidget(button) # add your button to the layout
-        CentralWidgetLayout.addWidget(self.ipBox) # add your button to the layout
-        CentralWidgetLayout.addWidget(self.nameBox) # add your button to the layout
-        CentralWidget.setLayout(CentralWidgetLayout) # assign your layout to the empty widget
-        window.setCentralWidget(CentralWidget) #make the assigned widget CentralWidget
-        window.resize(450, 100)
-        window.show()
-        
-        return self.ipBox , self.nameBox
- 
-    def saveFileDialog(self):    
-        options = QFileDialog.Options()
-        options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getSaveFileName(self,"QFileDialog.getSaveFileName()","","All Files (*);;xml Files (*.xml)", options=options)
-        if fileName:
-            print(fileName)
-            
-            
+     
 
-        
-    def showDialog(self):
-        
-        text, ok = QInputDialog.getText(self, 'Input Dialog', 'Enter your name:')
-        
-        if ok:
-            self.le.setText(str(text))
 
     def initUI(self):
         
@@ -102,7 +62,7 @@ class UserInterface(QMainWindow):
         #------fix the crash on open and save file
         OpenAction.triggered.connect(file.openFileNameDialog)
         SaveAction.triggered.connect(file.saveFileDialog)
-        AddProjector.triggered.connect(self.handleNewWindow)
+        AddProjector.triggered.connect(file.handleNewWindow)
         ConAction.triggered.connect(qApp.quit)
         LampAction.triggered.connect(qApp.quit)
         ShutterAction.triggered.connect(qApp.quit)
